@@ -20,7 +20,7 @@ public class Satellite {
 	private float positionX;
 
 	private float positionY;
-	
+
 	private List<String> message;
 
 }

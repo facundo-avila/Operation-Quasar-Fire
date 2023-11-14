@@ -23,14 +23,4 @@ public class Satellite {
 	
 	private List<String> message;
 
-	public Location getLocation(float distance) {
-		//TODO Calcular posición del emisor a partir de la distancia, positionX, positionY
-		return Location.builder()
-				.x(0)
-				.y(0)
-				.build();
-	}
-	
-//	public String getMessage(List<String> )
-
 }

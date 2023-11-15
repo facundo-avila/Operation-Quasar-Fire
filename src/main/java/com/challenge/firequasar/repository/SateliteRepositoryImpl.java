@@ -2,9 +2,8 @@ package com.challenge.firequasar.repository;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -25,30 +24,16 @@ public class SateliteRepositoryImpl implements SateliteRepository {
 
 	private static final String SATELITES_DATA = "satelites.json";
 
-	private static List<Satellite> SATELITES;
-
 	@Override
 	public List<Satellite> findAll() {
-		loadData();
-		return SATELITES;
-	}
-
-	@Override
-	public Optional<Satellite> findByName(final String name) {
-		loadData();
-		return SATELITES.stream().filter(satelite -> satelite.getName().equals(name)).findFirst();
-	}
-
-	private void loadData() {
-		if (Objects.isNull(SATELITES)) {
-			try {
-				final InputStream inputStream = new ClassPathResource(SATELITES_DATA).getInputStream();
-				SATELITES = objectMapper.readValue(inputStream, new TypeReference<List<Satellite>>() {
-				});
-			} catch (IOException e) {
-				log.error(e.getMessage(), e);
-			}
+		try {
+			final InputStream inputStream = new ClassPathResource(SATELITES_DATA).getInputStream();
+			return objectMapper.readValue(inputStream, new TypeReference<List<Satellite>>() {
+			});
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
 		}
+		return new ArrayList<>();
 	}
 
 }

@@ -2,7 +2,7 @@ package com.challenge.firequasar.service;
 
 import com.challenge.firequasar.model.Location;
 
-public interface DistanceCalculator {
+public interface LocationCalculatorService {
 
 	Location getLocation(float... distances);
 }

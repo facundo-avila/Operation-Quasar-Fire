@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
@@ -22,12 +23,13 @@ public class SateliteRepositoryImpl implements SateliteRepository {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	private static final String SATELITES_DATA = "satelites.json";
+	@Value("${app.satellite-data}")
+	private String satelliteData;
 
 	@Override
 	public List<Satellite> findAll() {
 		try {
-			final InputStream inputStream = new ClassPathResource(SATELITES_DATA).getInputStream();
+			final InputStream inputStream = new ClassPathResource(satelliteData).getInputStream();
 			return objectMapper.readValue(inputStream, new TypeReference<List<Satellite>>() {
 			});
 		} catch (IOException e) {

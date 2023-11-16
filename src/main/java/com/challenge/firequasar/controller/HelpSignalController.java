@@ -1,7 +1,5 @@
 package com.challenge.firequasar.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,42 +10,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.challenge.firequasar.model.HelpMessageRequest;
 import com.challenge.firequasar.model.HelpMessageResponse;
-import com.challenge.firequasar.service.LocationCalculatorService;
-import com.challenge.firequasar.service.MessageDesencrypt;
+import com.challenge.firequasar.model.TopSecretRequest;
+import com.challenge.firequasar.service.HelpSignalService;
 
 @RestController
 @RequestMapping("/help-signal")
 public class HelpSignalController {
 
+
 	@Autowired
-	private LocationCalculatorService locationCalculatorService;
-	
-	@Autowired
-	private MessageDesencrypt messageDesencrypt;
+	private HelpSignalService helpSignalService;
 	
 	@PostMapping("/topsecret")
-	public HelpMessageResponse topSecret(@RequestBody HelpMessageRequest helpMessageRequest) {
-		return null;
+	public HelpMessageResponse topSecret(@RequestBody TopSecretRequest topSecretRequest) {
+		helpSignalService.setMessages(topSecretRequest.getSatellites());
+		return helpSignalService.processMessage();
 	}
 
-	@PostMapping("/topsecret-split/{satellite-name}")
+	@PostMapping("/topsecret-split/{satelliteName}")
 	public HelpMessageRequest topSecretSplitSendMessage(@RequestBody HelpMessageRequest helpMessageRequest,
 			@PathVariable String satelliteName) {
 		helpMessageRequest.setName(satelliteName);
-		return null;
+		helpSignalService.setMessage(helpMessageRequest);
+		return helpMessageRequest;
 	}
 
 	@GetMapping("/topsecret-split")
 	public HelpMessageResponse topSecretSplitSendMessage() {
-		
-		float[] floatArray = { 1.1f, 2.2f, 3.3f };
-		List<String> kenobiMessage = List.of("este", "", "", "mensaje", "");
-        List<String> skywalkerMessage = List.of("", "es", "", "", "secreto");
-        List<String> satoMessage = List.of("este", "", "un", "", "");
-		String msg = messageDesencrypt.getMessage(kenobiMessage, skywalkerMessage, satoMessage);
-		return HelpMessageResponse.builder().position(locationCalculatorService.getLocation(floatArray))
-				.message(msg)
-				.build();
+		return helpSignalService.processMessage();
 	}
 
 }

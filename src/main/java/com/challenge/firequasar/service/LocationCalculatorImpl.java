@@ -31,9 +31,9 @@ public class LocationCalculatorImpl implements LocationCalculatorService {
 		final NonLinearLeastSquaresSolver solver = new NonLinearLeastSquaresSolver(
 				new TrilaterationFunction(positions, convertFloatArrayToDoubleArray(distances)), new LevenbergMarquardtOptimizer());
 		
-		final double[] centroid = solver.solve().getPoint().toArray();
-		return Location.builder().x((float) centroid[0])
-				.y((float) centroid[1])
+		final double[] location = solver.solve().getPoint().toArray();
+		return Location.builder().x((float) location[0])
+				.y((float) location[1])
 				.build();
 	}
 	

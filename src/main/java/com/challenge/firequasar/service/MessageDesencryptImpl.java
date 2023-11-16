@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.challenge.firequasar.exception.ServiceException;
 
 @Service
-public class MessageDesencryptImpl implements MessageDesencrypt {
+public class MessageDesencryptImpl implements MessageDesencryptService {
 
 	@Override
 	public String getMessage(List<String>... messages) {

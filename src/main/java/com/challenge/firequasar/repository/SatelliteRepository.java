@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.challenge.firequasar.model.Satellite;
 
-public interface SateliteRepository {
+public interface SatelliteRepository {
 
 	List<Satellite> findAll();
 	

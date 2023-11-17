@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.challenge.firequasar.model.HelpMessageRequest;
 import com.challenge.firequasar.model.Satellite;
-import com.challenge.firequasar.repository.SateliteRepository;
+import com.challenge.firequasar.repository.SatelliteRepository;
 
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
@@ -20,7 +20,7 @@ public class StaticSatelliteMessageStorage {
 	private final Map<Satellite, HelpMessageRequest> satelliteData = new HashMap<>();
 	
 	@Autowired
-	private SateliteRepository sateliteRepository;
+	private SatelliteRepository sateliteRepository;
 
     @PostConstruct
     public void initialize() {

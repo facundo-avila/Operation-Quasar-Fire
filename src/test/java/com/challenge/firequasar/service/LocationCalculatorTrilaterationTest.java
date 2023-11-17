@@ -15,7 +15,7 @@ import org.springframework.http.HttpStatus;
 import com.challenge.firequasar.exception.ServiceException;
 
 @SpringBootTest
-class LocationCalculatorImplTest {
+class LocationCalculatorTrilaterationTest {
 
 	@Autowired
 	private MessageDesencryptImpl messageDesencryptImpl;

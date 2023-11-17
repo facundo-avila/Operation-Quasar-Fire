@@ -13,6 +13,8 @@ import com.challenge.firequasar.model.HelpMessageResponse;
 import com.challenge.firequasar.model.TopSecretRequest;
 import com.challenge.firequasar.service.HelpSignalService;
 
+import jakarta.validation.constraints.NotNull;
+
 @RestController
 @RequestMapping("/help-signal")
 public class HelpSignalController {
@@ -29,7 +31,7 @@ public class HelpSignalController {
 
 	@PostMapping("/topsecret-split/{satelliteName}")
 	public HelpMessageRequest topSecretSplitSendMessage(@RequestBody HelpMessageRequest helpMessageRequest,
-			@PathVariable String satelliteName) {
+			@PathVariable @NotNull String satelliteName) {
 		helpMessageRequest.setName(satelliteName);
 		helpSignalService.setMessage(helpMessageRequest);
 		return helpMessageRequest;

@@ -21,7 +21,7 @@ import com.challenge.firequasar.model.Satellite;
 public class LocationClaculatorImplTest {
 
 	@Autowired
-	private LocationCalculatorImpl locationCalculatorImpl;
+	private LocationCalculatorTrilateration locationCalculatorImpl;
 	
 	@Mock
 	private StaticSatelliteMessageStorage staticSatelliteMessageStorage;

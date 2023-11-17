@@ -14,7 +14,7 @@ import com.lemmingapex.trilateration.NonLinearLeastSquaresSolver;
 import com.lemmingapex.trilateration.TrilaterationFunction;
 
 @Service
-public class LocationCalculatorImpl implements LocationCalculatorService {
+public class LocationCalculatorTrilateration implements LocationCalculatorService {
 
 	@Autowired
 	private StaticSatelliteMessageStorage staticSatelliteMessageStorage;
